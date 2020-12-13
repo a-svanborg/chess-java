@@ -1,0 +1,11 @@
+Arbetsgång:
+1. Board
+2. Squares
+3. Piece + pieces
+
+
+Spelet:
+- Implementera med två klick. Inte at spelaren måste dra.
+
+Nästa steg:
+- ACtion eller Mouse listener
