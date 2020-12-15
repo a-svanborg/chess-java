@@ -8,4 +8,4 @@ Spelet:
 - Implementera med två klick. Inte at spelaren måste dra.
 
 Nästa steg:
-- ACtion eller Mouse listener
+- Action eller Mouse listener

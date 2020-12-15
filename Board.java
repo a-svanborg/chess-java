@@ -1,10 +1,11 @@
 public class Board {
     Square[][] board;
+    private String CurrentMessage = "";
+    private boolean whitesTurn = true;
+    private int moveCounter = 0;
+    private Square mock = new Square(0, 0, new Pawn());
 
     public Board() {
-
-    }
-    public void initBoard() {
         //Put out all pieces
 
         //White
@@ -40,4 +41,72 @@ public class Board {
             }
         }
     }
+
+    public Square GetStatus(int i, int j) {
+        return board[i][j];
+        
+    }
+
+    public String GetMessage() {
+        return CurrentMessage;
+
+    }
+
+    public boolean Move(int i, int j) {
+        try {
+            //Move. Requires two clicks
+            
+            if (whitesTurn) { //move X
+                Move2(i, j, "test");
+                //CurrentMessage = "Spelare O tur";
+                whitesTurn = false;
+
+            } else { // move O
+                Move2(i, j, "test");
+                //CurrentMessage = "Spelare X tur";
+            
+        
+            }
+            return true;
+
+        } catch (Exception e) {
+            CurrentMessage = "Välj en position som finns på brädet";
+            return false;
+        }
+    }
+
+
+    public boolean Move2(int i, int j, String p){
+
+        // Choose piece to move. Has to be correct piece
+        if (moveCounter == 0) {
+            if (GetStatus(i-1, j-1) == mock) {
+                board[i-1][j-1] = mock;
+                moveCounter += 1;
+                CurrentMessage = String.format("%s: Placera i tom ruta",p);
+            } else {
+                CurrentMessage = String.format("%s: Välj egen pjäs",p);
+        }
+        
+        // Move choosen piece to new empty location on the board
+        } else if(moveCounter == 1) {
+            if (GetStatus(i-1, j-1) == mock) {
+                board[i-1][j-1] = mock;
+                CurrentMessage = String.format("%s: Godkänd flytt. Nästa spelares tur",p);
+                moveCounter = 0;
+            } else {
+                CurrentMessage = "Kan inte placera där. Välj annan ruta.";
+            }
+        }
+
+        return true;
+    }
+
+    public boolean Place(int i, int j, Square mock){
+        board[i-1][j-1] = mock;
+    return true;
+}
+
+
+
 }
