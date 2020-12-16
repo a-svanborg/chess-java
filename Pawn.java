@@ -8,7 +8,19 @@ public class Pawn extends Piece {
         super(x, y, c, dir);
         // TODO Auto-generated constructor stub
     }
-    public boolean validMove(Board board, Square startSQ, Square endSQ) {
+    public boolean validMove(Piece[][] board, Piece startP, Piece endP) {
+
+        if (startP != null && endP != null && startP.color == endP.color) {
+            return false;
+        }
+
+        int x = Math.abs(startP.xPosition - endP.xPosition); 
+        int y = Math.abs(startP.yPosition - endP.yPosition);
+
+        if (x + y == 1) { 
+            return true; 
+        }
+
         return true;
     }
 }

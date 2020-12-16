@@ -29,13 +29,13 @@ public class Square extends JButton{
     //     return this.piece;
     // }
 
-    // public int getX(){
-    //     return this.xPosition;
-    // }
+    public int getX(){
+        return this.xPosition;
+    }
 
-    // public int getY(){
-    //     return this.yPosition;
-    // }
+    public int getY(){
+        return this.yPosition;
+    }
 
     // public void setX(int x){
     //     this.xPosition = x;

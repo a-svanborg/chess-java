@@ -56,11 +56,11 @@ public class Game extends JFrame implements ActionListener {
             }
             counter++;
         }
+        System.out.println("hej!");
 
 
         Panel.setLayout(new GridLayout(Size + 1, Size));
         label = new JLabel(Chessboard.GetMessage());
-        
         Panel.add(label);
         add(Panel);
         setVisible(true);

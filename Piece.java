@@ -30,7 +30,7 @@ public abstract class Piece {
         return directory;
     }
 
-    public boolean validMove(Board board, Square startSQ, Square endSQ) {
+    public boolean validMove(Piece[][] board, Piece startP, Piece endP) {
         return true;
     }
     // Move, setColor, getColor, getPosition, setPosition

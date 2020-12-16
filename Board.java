@@ -66,14 +66,8 @@ public class Board {
             
             if (whitesTurn) { 
                 Move2(i, j, piece, Color.WHITE);
-                
-                
-
             } else {
                 Move2(i, j, piece, Color.BLACK);
-                
-            
-        
             }
             return true;
 
@@ -84,7 +78,7 @@ public class Board {
     }
 
 
-    public boolean Move2(int i, int j, Piece piece, Color c){
+    public boolean Move2(int i, int j, Piece endPiece, Color c){
 
         // Choose piece to move. Has to be correct piece
         if (moveCounter == 0) {
@@ -100,7 +94,8 @@ public class Board {
         
         // Move choosen piece to new empty location on the board
         } else if(moveCounter == 1) {
-            if (GetStatus(i, j) == null) {
+            ;
+            if (choosenPiece.validMove(board, choosenPiece, endPiece)) {
                 board[i][j] = choosenPiece;
                 CurrentMessage = String.format("Nice move. Next players turn.");
                 moveCounter = 0;
