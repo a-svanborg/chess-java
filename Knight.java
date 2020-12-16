@@ -8,7 +8,19 @@ public class Knight extends Piece {
         super(x, y, c, dir);
         // TODO Auto-generated constructor stub
     }
-    public boolean validMove(Board board, Square startSQ, Square endSQ) {
-        return true;
+
+    // Returns true if the move is ok
+    public boolean validMove(Piece[][] board, Piece startP, Piece endP) {
+        if (endP.color == startP.color) { 
+            return false; 
+        }
+
+        int x = Math.abs(startP.xPosition - endP.xPosition); 
+        int y = Math.abs(startP.yPosition - endP.yPosition);
+
+        if (x + y == 1 || (x==1 && y==1)) { 
+            return true;
+        }
+        return false;
     }
 }
