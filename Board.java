@@ -1,48 +1,56 @@
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.Color;
+
 public class Board {
-    Square[][] board;
-    private String CurrentMessage = "";
+    //Square[][] board;
+    Piece[][] board = new Piece[8][8];
+    private String CurrentMessage = "White starts";
     private boolean whitesTurn = true;
     private int moveCounter = 0;
-    private Square mock = new Square(0, 0, new Pawn());
+    Color black = Color.BLACK;
+    Color white = Color.WHITE;
+    private Piece empty = new Pawn(0, 0, Color.BLUE, "");
+    Piece choosenPiece;
 
     public Board() {
         //Put out all pieces
 
         //White
-        board[0][0] = new Square(0, 0, new Rook());
-        board[0][1] = new Square(0, 1, new Knight());
-        board[0][2] = new Square(0, 2, new Bishop());
-        board[0][3] = new Square(0, 3, new Queen());
-        board[0][4] = new Square(0, 4, new King());
-        board[0][5] = new Square(0, 5, new Bishop());
-        board[0][6] = new Square(0, 6, new Knight());
-        board[0][7] = new Square(0, 7, new Rook());
+        board[0][0] = new Rook(0,0,white, "pictures/white_rook.png");
+        board[0][1] = new Knight(0,1,white, "pictures/white_knight.png");
+        board[0][2] = new Bishop(0,2,white, "pictures/white_bishop.png");
+        board[0][3] = new Queen(0,3,white, "pictures/white_queen.png");
+        board[0][4] = new King(0,4,white, "pictures/white_king.png");
+        board[0][5] = new Bishop(0,5,white, "pictures/white_bishop.png");
+        board[0][6] = new Knight(0,6,white, "pictures/white_knight.png");
+        board[0][7] = new Rook(0,7,white, "pictures/white_rook.png");
         for (int i = 0; i < board.length; i++) {
-            board[1][i] = new Square(1, i, new Pawn());
+            board[1][i] = new Pawn(1, i, white, "pictures/white_pawn.png");
         }
 
         //Black
-        board[7][0] = new Square(7, 0, new Rook());
-        board[7][1] = new Square(7, 1, new Knight());
-        board[7][2] = new Square(7, 2, new Bishop());
-        board[7][3] = new Square(7, 3, new Queen());
-        board[7][4] = new Square(7, 4, new King());
-        board[7][5] = new Square(7, 5, new Bishop());
-        board[7][6] = new Square(7, 6, new Knight());
-        board[7][7] = new Square(7, 7, new Rook());
+        board[7][0] = new Rook(7,0,black, "pictures/black_rook.png");
+        board[7][1] = new Knight(7,1, black, "pictures/black_knight.png");
+        board[7][2] = new Bishop(7,2,black, "pictures/black_bishop.png");
+        board[7][3] = new Queen(7,3,black, "pictures/black_queen.png");
+        board[7][4] = new King(7,4,black, "pictures/black_king.png");
+        board[7][5] = new Bishop(7,5,black, "pictures/black_bishop.png");
+        board[7][6] = new Knight(7,6,black, "pictures/black_knight.png");
+        board[7][7] = new Rook(7,7,black, "pictures/black_rook.png");
         for (int i = 0; i < board.length; i++) {
-            board[6][i] = new Square(6, i, new Pawn());
+            board[6][i] = new Pawn(6,i,black, "pictures/black_pawn.png");
         }
 
         //Empty
         for (int i = 2; i < 6; i++) { 
             for (int j = 0; j < 8; j++) {
-                board[i][j] = new Square(i, j, null);
+                board[i][j] = null;
             }
         }
     }
 
-    public Square GetStatus(int i, int j) {
+    public Piece GetStatus(int i, int j) {
         return board[i][j];
         
     }
@@ -52,18 +60,18 @@ public class Board {
 
     }
 
-    public boolean Move(int i, int j) {
+    public boolean Move(int i, int j, Piece piece) {
         try {
-            //Move. Requires two clicks
+            //Moving requires two clicks
             
-            if (whitesTurn) { //move X
-                Move2(i, j, "test");
-                //CurrentMessage = "Spelare O tur";
-                whitesTurn = false;
+            if (whitesTurn) { 
+                Move2(i, j, piece, Color.WHITE);
+                
+                
 
-            } else { // move O
-                Move2(i, j, "test");
-                //CurrentMessage = "Spelare X tur";
+            } else {
+                Move2(i, j, piece, Color.BLACK);
+                
             
         
             }
@@ -76,34 +84,37 @@ public class Board {
     }
 
 
-    public boolean Move2(int i, int j, String p){
+    public boolean Move2(int i, int j, Piece piece, Color c){
 
         // Choose piece to move. Has to be correct piece
         if (moveCounter == 0) {
-            if (GetStatus(i-1, j-1) == mock) {
-                board[i-1][j-1] = mock;
+            choosenPiece = GetStatus(i, j);
+            Color pieceColor = choosenPiece.getColor();
+            if (pieceColor == c) {
+                board[i][j] = null;
                 moveCounter += 1;
-                CurrentMessage = String.format("%s: Placera i tom ruta",p);
+                CurrentMessage = String.format("Place your piece");
             } else {
-                CurrentMessage = String.format("%s: Välj egen pjäs",p);
+                CurrentMessage = String.format("Choose one of your own pieces");
         }
         
         // Move choosen piece to new empty location on the board
         } else if(moveCounter == 1) {
-            if (GetStatus(i-1, j-1) == mock) {
-                board[i-1][j-1] = mock;
-                CurrentMessage = String.format("%s: Godkänd flytt. Nästa spelares tur",p);
+            if (GetStatus(i, j) == null) {
+                board[i][j] = choosenPiece;
+                CurrentMessage = String.format("Nice move. Next players turn.");
                 moveCounter = 0;
+                whitesTurn = !whitesTurn;
             } else {
-                CurrentMessage = "Kan inte placera där. Välj annan ruta.";
+                CurrentMessage = "Illegal move. Choose another square.";
             }
         }
 
         return true;
     }
 
-    public boolean Place(int i, int j, Square mock){
-        board[i-1][j-1] = mock;
+    public boolean Place(int i, int j, Piece empty){
+        board[i-1][j-1] = empty;
     return true;
 }
 

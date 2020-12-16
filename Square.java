@@ -3,17 +3,19 @@ import java.awt.Color;
 
 public class Square extends JButton{
     // Has a position and a may have a piece
-    private int xPosition;
-    private int yPosition;
-    private Piece piece;
+    int xPosition;
+    int yPosition;
+    Piece piece;
+    Color color;
 
-    public Square(int xPosition, int yPosition, Piece piece) {
+    public Square(int xPosition, int yPosition, Piece piece, Color c) {
+        color = c;
         setSize(100,100);
-        setBorder(BorderFactory.createLineBorder(Color.decode("#00A4CCFF"),10,false));
+        setBorder(BorderFactory.createLineBorder(Color.decode("#00A4CCFF"),2,false));
         setBorderPainted(true);
         setContentAreaFilled(true);
         
-        setBackground(Color.decode("#00203FFF"));
+        setBackground(color);
         setForeground(Color.BLACK);
         setOpaque(true);
         this.xPosition = xPosition;
@@ -21,27 +23,29 @@ public class Square extends JButton{
         this.piece = piece;
     }
 
-    public Piece getPiece() {
-        return this.piece;
-    }
+    
 
-    public int getX(){
-        return this.xPosition;
-    }
+    // public Piece getPiece() {
+    //     return this.piece;
+    // }
 
-    public int getY(){
-        return this.yPosition;
-    }
+    // public int getX(){
+    //     return this.xPosition;
+    // }
 
-    public void setX(int x){
-        this.xPosition = x;
-    }
+    // public int getY(){
+    //     return this.yPosition;
+    // }
 
-    public void setY(int y){
-        this.yPosition = y;
-    }
+    // public void setX(int x){
+    //     this.xPosition = x;
+    // }
 
-    public boolean occupied() {
-        return (this.piece != null);
-    }
+    // public void setY(int y){
+    //     this.yPosition = y;
+    // }
+
+    // public boolean occupied() {
+    //     return (this.piece != null);
+    // }
 }
