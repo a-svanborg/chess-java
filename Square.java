@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.Color;
 
 public class Square extends JButton{
-    // Has a position and  a piece. If the square is "empty", it holds a mock-piece.
+    // Has a position, color and  a piece. If the square is "empty", it holds a mock-piece which is blue.
     int xPosition;
     int yPosition;
     Piece piece;

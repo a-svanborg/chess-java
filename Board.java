@@ -1,9 +1,6 @@
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.Color;
 
 public class Board {
-    //Square[][] board;
     Piece[][] board = new Piece[8][8];
     private String CurrentMessage = "White starts";
     private boolean whitesTurn = true;
@@ -13,9 +10,8 @@ public class Board {
     Piece choosenPiece;
 
     public Board() {
-        //Put out all pieces
-
-        //White
+        // Put out all the pieces
+        // White
         board[7][0] = new Rook(7,0,white, "pictures/white_rook.png");
         board[7][1] = new Knight(7,1,white, "pictures/white_knight.png");
         board[7][2] = new Bishop(7,2,white, "pictures/white_bishop.png");
@@ -28,7 +24,7 @@ public class Board {
             board[6][i] = new Pawn(6, i, white, "pictures/white_pawn.png");
         }
 
-        //Black
+        // Black
         board[0][0] = new Rook(0,0,black, "pictures/black_rook.png");
         board[0][1] = new Knight(0,1, black, "pictures/black_knight.png");
         board[0][2] = new Bishop(0,2,black, "pictures/black_bishop.png");
@@ -41,7 +37,7 @@ public class Board {
             board[1][i] = new Pawn(1,i,black, "pictures/black_pawn.png");
         }
 
-        //Empty
+        // Empty squares in the middle
         for (int i = 2; i < 6; i++) { 
             for (int j = 0; j < 8; j++) {
                 board[i][j] = new Mock(i,j,Color.BLUE, "");
@@ -49,16 +45,17 @@ public class Board {
         }
     }
 
+    //returns piece at given place from the board
     public Piece GetStatus(int i, int j) {
         return board[i][j];
-        
     }
 
+    // Gives us messages to be put in the label
     public String GetMessage() {
         return CurrentMessage;
-
     }
 
+    // Calls real Move2 that does the actual move and sends with the color of player whos turn it is.
     public boolean Move(int i, int j, Piece piece) {
         try {
             //Moving requires two clicks
@@ -70,13 +67,13 @@ public class Board {
             return true;
 
         } catch (Exception e) {
-            System.out.println(e);
+            //System.out.println(e);
             CurrentMessage = "Välj en position som finns på brädet";
             return false;
         }
     }
 
-
+    // Calls validMove to check the move. Also updates the board when a move is succesful.
     public boolean Move2(int i, int j, Piece piece, Color c){
         // Choose piece to move. Has to be correct piece
         if (moveCounter == 0) {
@@ -90,11 +87,11 @@ public class Board {
                 CurrentMessage = String.format("Choose one of your own pieces");
         }
         
-        // Move choosen piece to new empty location on the board
+        // Move choosen piece to location. Must check if move is valid.
         } else if(moveCounter == 1) {
             Piece newSquare = piece;
 
-            // This if, allows us to place back at the same square without switching player.
+            // This if-statement allows us to place back the piece at the same square without switching player.
             if (newSquare.xPosition == choosenPiece.xPosition && newSquare.yPosition == choosenPiece.yPosition) {
                 board[i][j] = choosenPiece;
                 choosenPiece.xPosition = i;
@@ -114,15 +111,6 @@ public class Board {
                 CurrentMessage = "Illegal move. Choose another square.";
             }
         }
-
         return true;
     }
-
-    public boolean Place(int i, int j, Piece empty){
-        board[i-1][j-1] = empty;
-    return true;
-}
-
-
-
 }

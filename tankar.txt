@@ -1,7 +1,7 @@
 Pieces:
 - Pawn = DONE!
 - King = DONE!
-- Rook
-- Knight
-- Queen
-- Bishop
+- Knight = DONE!
+- Rook = DONE!
+- Bishop = DONE!
+- Queen = DONE!

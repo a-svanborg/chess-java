@@ -4,8 +4,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
 import java.awt.Color;
 
 public class Game extends JFrame implements ActionListener {
@@ -38,7 +36,7 @@ public class Game extends JFrame implements ActionListener {
                 } else {
                     color = Color.WHITE;
                 }
-                
+    
                 Piece current = Chessboard.GetStatus(row, col);
                 Square sq = new Square(row, col, current, color);
                 
@@ -57,7 +55,6 @@ public class Game extends JFrame implements ActionListener {
             counter++;
         }
 
-
         Panel.setLayout(new GridLayout(Size + 1, Size));
         label = new JLabel(Chessboard.GetMessage());
         
@@ -69,17 +66,15 @@ public class Game extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Square square = (Square) e.getSource();
-        
         Chessboard.Move(square.xPosition, square.yPosition, square.piece);
         restart();
-
     }
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Welcome!");
         Board chessboard = new Board();
-        Game newgame = new Game(chessboard);
+        new Game(chessboard);
         scan.close();
     }
     

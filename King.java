@@ -1,7 +1,5 @@
 import java.awt.Color;
 
-import javax.swing.ImageIcon;
-
 public class King extends Piece {
 
     King(int x, int y, Color c, String dir) {

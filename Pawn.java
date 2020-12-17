@@ -1,7 +1,5 @@
 import java.awt.Color;
 
-import javax.swing.ImageIcon;
-
 public class Pawn extends Piece {
     private boolean hasMoved = false;
 
@@ -11,8 +9,6 @@ public class Pawn extends Piece {
 
     // Returns true if the move is ok
     public boolean validMove(Piece[][] board, Piece startP, Piece endP) {
-        Piece blockingPiece = board[startP.xPosition+1][startP.yPosition];
-
 
         if (endP.color == startP.color) { 
             return false; 
@@ -25,7 +21,7 @@ public class Pawn extends Piece {
                     return true;
                 
                 // Capturing
-                } else if (endP.color == Color.BLACK && endP.xPosition - startP.xPosition == -1 && Math.abs(endP.yPosition - startP.yPosition) == -1) {
+                } else if (endP.color == Color.BLACK && endP.xPosition - startP.xPosition == -1 && Math.abs(endP.yPosition - startP.yPosition) == 1) {
                     return true;
                 }
             } else {
@@ -59,8 +55,6 @@ public class Pawn extends Piece {
                 }
             }
         }
-        
-
         return false;
     }
 }
