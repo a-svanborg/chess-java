@@ -110,6 +110,8 @@ public class Board {
             } else {
                 CurrentMessage = "Illegal move. Choose another square.";
             }
+
+            
         }
         return true;
     }

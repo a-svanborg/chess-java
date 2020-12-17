@@ -5,3 +5,9 @@ Pieces:
 - Rook = DONE!
 - Bishop = DONE!
 - Queen = DONE!
+
+
+Todo:
+- Promotion: Bild av drottning kommer inte upp förens nästa klick.
+- Gridlayout på label.
+- 

@@ -5,6 +5,7 @@ public class Pawn extends Piece {
 
     Pawn(int x, int y, Color c, String dir) {
         super(x, y, c, dir);
+        
     }
 
     // Returns true if the move is ok
@@ -16,7 +17,7 @@ public class Pawn extends Piece {
         if (hasMoved == false) {
             if (startP.color == Color.WHITE) {
                 // First move = 1 or 2 steps "forward"
-                if (startP.yPosition == endP.yPosition && ((endP.xPosition - startP.xPosition == -2) || (endP.xPosition - startP.xPosition == -1)) && endP.color == Color.BLUE) {
+                if (startP.yPosition == endP.yPosition && ((endP.xPosition - startP.xPosition == -2) || (endP.xPosition - startP.xPosition == -1)) && endP.color == Color.BLUE && board[startP.xPosition - 1][startP.yPosition].color == Color.BLUE) {
                     hasMoved = true;
                     return true;
                 
@@ -26,7 +27,7 @@ public class Pawn extends Piece {
                 }
             } else {
                 // First move = 1 or 2 steps "forward"
-                if (startP.yPosition == endP.yPosition && ((startP.xPosition - endP.xPosition == -2) || (startP.xPosition - endP.xPosition == -1) && endP.color == Color.BLUE)) {
+                if (startP.yPosition == endP.yPosition && ((startP.xPosition - endP.xPosition == -2) || (startP.xPosition - endP.xPosition == -1) && endP.color == Color.BLUE) && board[startP.xPosition + 1][startP.yPosition].color == Color.BLUE) {
                     hasMoved = true;
                     return true;
                 
@@ -57,4 +58,6 @@ public class Pawn extends Piece {
         }
         return false;
     }
+
+
 }
