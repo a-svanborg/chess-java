@@ -86,11 +86,8 @@ public class Game extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Welcome!");
         Board chessboard = new Board();
         new Game(chessboard);
-        scan.close();
     }
     
 }

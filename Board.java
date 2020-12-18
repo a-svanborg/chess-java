@@ -2,7 +2,7 @@ import java.awt.Color;
 
 public class Board {
     Piece[][] board = new Piece[8][8];
-    private String CurrentMessage = "White starts";
+    private String CurrentMessage = "Welcome! White starts";
     private boolean whitesTurn = true;
     private int moveCounter = 0;
     Color black = Color.BLACK;
@@ -99,7 +99,7 @@ public class Board {
                 CurrentMessage = String.format("Place your piece");
 
             } else {
-                CurrentMessage = String.format("Not your turn!!");
+                CurrentMessage = String.format("It is %s turn now", whitesTurn == true ? "whites" : "blacks");
             }
 
             // Move choosen piece to location. Must check if move is valid.
@@ -120,7 +120,7 @@ public class Board {
                 board[i][j] = choosenPiece;
                 choosenPiece.xPosition = i;
                 choosenPiece.yPosition = j;
-                CurrentMessage = String.format("Still your turn");
+                CurrentMessage = String.format("Still %s turn", whitesTurn == true ? "whites" : "blacks");
                 moveCounter = 0;
             }
 
@@ -129,12 +129,12 @@ public class Board {
                 board[i][j] = choosenPiece;
                 choosenPiece.xPosition = i;
                 choosenPiece.yPosition = j;
-                CurrentMessage = String.format("Nice move. Next players turn.");
+                CurrentMessage = String.format("Nice move. %s turn.", whitesTurn == true ? "Blacks" : "Whites");
                 moveCounter = 0;
                 whitesTurn = !whitesTurn;
 
                 // Promotion
-                if (choosenPiece instanceof Pawn && ((choosenPiece.color == Color.WHITE && i == 0) || (choosenPiece.color == Color.BLACK && j == 7))) {
+                if (choosenPiece instanceof Pawn && ((choosenPiece.color == Color.WHITE && i == 0) || (choosenPiece.color == Color.BLACK && i == 7))) {
                          board[i][j] = new Queen(i,j,choosenPiece.color, choosenPiece.color == Color.WHITE ? "pictures/white_queen.png" : "pictures/black_queen.png");
                      } 
 

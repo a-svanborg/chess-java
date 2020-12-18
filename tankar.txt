@@ -8,6 +8,6 @@ Pieces:
 
 
 Todo:
-- Promotion: Bild av drottning kommer inte upp förens nästa klick.
-- Gridlayout på label.
-- 
+
+Buggar:
+
