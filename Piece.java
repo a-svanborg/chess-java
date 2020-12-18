@@ -1,7 +1,13 @@
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public abstract class Piece {
-    Color color;
+    public Color color;
+    public boolean inStrike = false;
+    public boolean hasMoved = false;
+    public boolean isChecking = false;
     int xPosition;
     int yPosition;
     String directory;
@@ -32,4 +38,6 @@ public abstract class Piece {
     public boolean validMove(Piece[][] board, Piece startP, Piece endP) {
         return true;
     }
+
+
 }

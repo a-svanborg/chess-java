@@ -6,4 +6,7 @@ public class Mock extends Piece {
         super(x, y, c, dir);
         
     }
+    public boolean validMove(Piece[][] board, Piece startP, Piece endP) {
+        return false;
+    }
 }

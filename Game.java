@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.Color;
@@ -9,13 +11,14 @@ import java.awt.Color;
 public class Game extends JFrame implements ActionListener {
     private Board Chessboard;
     private JLabel label = new JLabel();
+    private JPanel mainPanel = new JPanel();
     private JPanel Panel = new JPanel();
     private int Size = 8;
     private Color color;
 
     Game(Board chessboard) {
         Chessboard = chessboard;
-        setSize(700, 700);
+        setSize(550, 650);
         setLocation(100, 150);
         setTitle("Chess");
         getContentPane().setBackground(Color.CYAN);
@@ -25,20 +28,28 @@ public class Game extends JFrame implements ActionListener {
     }
 
     public void restart() {
+        mainPanel.removeAll();
+        mainPanel = new JPanel();
         Panel.removeAll();
         Panel = new JPanel();
         int counter = 1;
 
         for (int row = 0; row < Size; row++) {
             for (int col = 0; col < Size; col++) {
-                if (counter % 2 == 0) {
+                Piece current = Chessboard.GetStatus(row, col);
+
+                if (current.isChecking){
+                    color = Color.RED;
+                }
+                else if(current.inStrike){
+                    color = Color.YELLOW;
+                }
+                else if (counter % 2 == 0) {
                     color = Color.DARK_GRAY;
                 } else {
                     color = Color.WHITE;
                 }
                 
-                Piece current = Chessboard.GetStatus(row, col);
-
                 // Promotion
                 if (current instanceof Pawn && ((current.color == Color.WHITE && row == 0) || (current.color == Color.BLACK && row == 7))) {
                     Chessboard.board[row][col] = new Queen(row,col,current.color, current.color == Color.WHITE ? "pictures/white_queen.png" : "pictures/black_queen.png");
@@ -63,9 +74,12 @@ public class Game extends JFrame implements ActionListener {
 
         Panel.setLayout(new GridLayout(Size + 1, Size));
         label = new JLabel(Chessboard.GetMessage());
-        
-        Panel.add(label);
-        add(Panel);
+
+
+        mainPanel.add(Panel);
+        mainPanel.add(label);
+
+        add(mainPanel);
         setVisible(true);
     }
     
