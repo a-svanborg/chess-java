@@ -1,0 +1,79 @@
+@startuml
+class Game{
+    --Properties--
+    - Chessboard
+    - mainPanel
+    - Panel
+    - color
+    --Methods--
+    + restart()
+    + main()
+}
+class Board{
+    --Properties--
+    ~ board
+    - currentMessage
+    - whitesTurn
+    - moveCounter
+    ~ chosenPiece
+    - color
+    --Methods--
+    + Move()
+    + GetStatus()
+    + GetMessage()
+}
+
+class Square{
+    --Properties--
+    ~ xPosition
+    ~ yPosition
+    ~ piece
+    ~ color
+}
+
+class Piece{
+    --Properties--
+    + xPosition
+    + yPosition
+    ~ directory
+    + color
+    + inStrike
+    + hasMoved
+    + isChecking
+    --Methods--
+    + validMove()
+    + getColor()
+    + getxPosition()
+    + getxPosition()
+}
+
+class Rook
+class Knight
+class Bishop
+class Queen
+class King
+class Pawn
+class Mock
+
+interface ActionListener
+
+
+
+JFrame <-- Game
+Game --o Board
+Game "64" *-- Square
+
+JButton <-- Square
+ActionListener <.. Square
+
+Square --o Piece
+
+Piece <-- Rook
+Piece <-- Knight
+Piece <-- Bishop
+Piece <-- Queen
+Piece <-- King
+Piece <-- Pawn
+Piece <-- Mock
+
+@enduml

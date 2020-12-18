@@ -8,6 +8,10 @@ Pieces:
 
 
 Todo:
+-rensa piece.xPosition använd istället getxPosition. Samma för yposition, color.
+- när används directory
+- se över access level properties
+
 
 Buggar:
 
