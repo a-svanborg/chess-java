@@ -1,8 +1,4 @@
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
-
-
 public abstract class Piece {
     public Color color;
     public boolean inStrike = false;
