@@ -50,11 +50,6 @@ public class Game extends JFrame implements ActionListener {
                     color = Color.WHITE;
                 }
                 
-                // Promotion
-                if (current instanceof Pawn && ((current.color == Color.WHITE && row == 0) || (current.color == Color.BLACK && row == 7))) {
-                    Chessboard.board[row][col] = new Queen(row,col,current.color, current.color == Color.WHITE ? "pictures/white_queen.png" : "pictures/black_queen.png");
-                } 
-
                 Square sq = new Square(row, col, current, color);
                 
                 try {

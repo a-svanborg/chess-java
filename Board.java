@@ -133,17 +133,23 @@ public class Board {
                 moveCounter = 0;
                 whitesTurn = !whitesTurn;
 
+                // Promotion
+                if (choosenPiece instanceof Pawn && ((choosenPiece.color == Color.WHITE && i == 0) || (choosenPiece.color == Color.BLACK && j == 7))) {
+                         board[i][j] = new Queen(i,j,choosenPiece.color, choosenPiece.color == Color.WHITE ? "pictures/white_queen.png" : "pictures/black_queen.png");
+                     } 
+
                 // Loop every square to find potentiall checks
                 outerloop: for (int chosenRow = 0; chosenRow < 8; chosenRow++) {
                     for (int chosenCol = 0; chosenCol < 8; chosenCol++) {
                         for (int otherRow = 0; otherRow < 8; otherRow++) {
                             for (int otherCol = 0; otherCol < 8; otherCol++) {
-                                if (board[chosenRow][chosenCol].validMove(board, board[chosenRow][chosenCol], board[otherRow][otherCol])) {
+                                if (board[chosenRow][chosenCol].validMove(board, board[chosenRow][chosenCol],
+                                        board[otherRow][otherCol])) {
                                     if (board[otherRow][otherCol] instanceof King) {
                                         board[otherRow][otherCol].isChecking = true;
                                         board[chosenRow][chosenCol].isChecking = true;
                                         CurrentMessage = String.format("Check!");
-                                        break outerloop;
+                                        //break outerloop;
                                     }
                                 }
                             }
@@ -156,6 +162,7 @@ public class Board {
             }
 
         }
+
         return true;
     }
 }
