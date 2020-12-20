@@ -55,9 +55,6 @@ public class Game extends JFrame implements ActionListener {
                     sq.setIcon(new ImageIcon(img));
                 } catch (Exception e) {}
 
-                sq.setX(row);
-                sq.setY(col);
-
                 Panel.add(sq).setLocation(row * 100, col * 100);
                 sq.addActionListener(this);
                 counter++;
@@ -78,7 +75,6 @@ public class Game extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Square square = (Square) e.getSource();
-        //Chessboard.Move(square.xPosition, square.yPosition, square.Piece);
         Chessboard.Move(square.getXpos(), square.getYpos(), square.getPiece());
         restart();
     }

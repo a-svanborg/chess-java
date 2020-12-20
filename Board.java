@@ -1,15 +1,15 @@
 import java.awt.Color;
 
 public class Board {
-    Piece[][] board = new Piece[8][8];
+    private Piece[][] board = new Piece[8][8];
     private String CurrentMessage = "Welcome! White starts";
     private boolean whitesTurn = true;
     private int moveCounter = 0;
-    Color black = Color.BLACK;
-    Color white = Color.WHITE;
-    Piece choosenPiece;
+    private Piece choosenPiece;
 
     public Board() {
+        Color black = Color.BLACK;
+        Color white = Color.WHITE;
         // Put out all the pieces
         // White
         board[7][0] = new Rook(7, 0, white, "pictures/white_rook.png");

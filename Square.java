@@ -34,12 +34,4 @@ public class Square extends JButton{
     public Piece getPiece() {
         return Piece;
     }
-
-    public void setX(int x) {
-        xPosition = x;
-    }
-
-    public void setY(int y) {
-        yPosition = y;
-    }
 }

@@ -1,9 +1,9 @@
 import java.awt.Color;
 public abstract class Piece {
     private Color color;
-    boolean inStrike = false;
-    boolean isChecking = false;
-    boolean hasMoved = false;
+    public boolean inStrike = false;
+    public boolean isChecking = false;
+    public boolean hasMoved = false;
     private int xPosition;
     private int yPosition;
     private String directory;
