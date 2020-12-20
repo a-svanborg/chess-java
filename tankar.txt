@@ -29,7 +29,7 @@ Redovisningsplan:
     Innehar en kopia på brädet
     restart()
     Action listener.
-3. Board Anton
+3. Chess Anton
     Lista av listor av pjäser
     Mock objektet
     Move()
