@@ -20,3 +20,25 @@ Ska vi identifiera när någon vunnit?
 Varför har vi return true/false i "Move()"?
 
 
+Redovisningsplan:
+
+1. Presentera oss, projektet och UML Erik
+2. GameView Erik
+    Main
+    HUr uppbyggd Jpanels, label
+    Innehar en kopia på brädet
+    restart()
+    Action listener.
+3. Board Anton
+    Lista av listor av pjäser
+    Mock objektet
+    Move()
+    GetPiece()
+    GetMessage()
+4. Square Anton
+    Knapp som avlyssnas av GameView
+5. Pieces Anton
+    public properties för Gameviev
+    validMove()
+
+
