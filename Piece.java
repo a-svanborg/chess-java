@@ -1,12 +1,13 @@
 import java.awt.Color;
 public abstract class Piece {
     private Color color;
-    public boolean inStrike = false;
-    public boolean isChecking = false;
-    public boolean hasMoved = false;
     private int xPosition;
     private int yPosition;
     private String directory;
+
+    public boolean inStrike = false;
+    public boolean isChecking = false;
+    public boolean hasMoved = false;
 
     Piece(int x, int y, Color c, String dir) {
         xPosition = x;

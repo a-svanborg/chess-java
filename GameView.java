@@ -5,15 +5,14 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.Color;
 
-public class Game extends JFrame implements ActionListener {
+public class GameView extends JFrame implements ActionListener {
     private Board Chessboard;
     private JLabel label = new JLabel();
     private JPanel mainPanel = new JPanel();
     private JPanel Panel = new JPanel();
     private int Size = 8;
-    private Color color;
 
-    Game(Board chessboard) {
+    GameView(Board chessboard) {
         Chessboard = chessboard;
         setSize(550, 650);
         setLocation(100, 150);
@@ -29,25 +28,27 @@ public class Game extends JFrame implements ActionListener {
         mainPanel = new JPanel();
         Panel.removeAll();
         Panel = new JPanel();
+
+        Color squareColor;
         int counter = 1;
 
         for (int row = 0; row < Size; row++) {
             for (int col = 0; col < Size; col++) {
-                Piece current = Chessboard.GetStatus(row, col);
+                Piece current = Chessboard.GetPieceAt(row, col);
 
                 if (current.isChecking){
-                    color = Color.RED;
+                    squareColor = Color.RED;
                 }
                 else if(current.inStrike){
-                    color = Color.YELLOW;
+                    squareColor = Color.YELLOW;
                 }
                 else if (counter % 2 == 0) {
-                    color = Color.DARK_GRAY;
+                    squareColor = Color.DARK_GRAY;
                 } else {
-                    color = Color.WHITE;
+                    squareColor = Color.WHITE;
                 }
                 
-                Square sq = new Square(row, col, current, color);
+                Square sq = new Square(row, col, current, squareColor);
                 
                 try {
                     String directory = current.getDir();
@@ -81,6 +82,6 @@ public class Game extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         Board chessboard = new Board();
-        new Game(chessboard);
+        new GameView(chessboard);
     }
 }

@@ -1,50 +1,40 @@
 @startuml
-class Game{
-    --Properties--
-    - Chessboard
-    - mainPanel
-    - Panel
-    - color
+class GameView{
     --Methods--
     + restart()
-    + main()
 }
+
+class JPanel
+
+class JLabel
+
 class Board{
-    --Properties--
-    ~ board
-    - currentMessage
-    - whitesTurn
-    - moveCounter
-    ~ chosenPiece
-    - color
     --Methods--
     + Move()
-    + GetStatus()
+    + GetPieceAt()
     + GetMessage()
 }
 
 class Square{
-    --Properties--
-    ~ xPosition
-    ~ yPosition
-    ~ piece
-    ~ color
+    --Methods--
+    + getXpos()
+    + getYpos()
+    + getPiece()
 }
 
 class Piece{
     --Properties--
-    + xPosition
-    + yPosition
-    ~ directory
-    + color
     + inStrike
     + hasMoved
     + isChecking
     --Methods--
     + validMove()
     + getColor()
-    + getxPosition()
-    + getxPosition()
+    + getX()
+    + setX()
+    + getY()
+    + setY()
+    + getDir()
 }
 
 class Rook
@@ -59,12 +49,19 @@ interface ActionListener
 
 
 
-JFrame <-- Game
-Game --o Board
-Game "64" *-- Square
+JFrame <-- GameView
+GameView --o Board
+
+
+JPanel "2" *-- GameView
+Square "64" *-- JPanel
+JLabel "1" *-- JPanel
+
+
+Piece "64" *-- Board
 
 JButton <-- Square
-ActionListener <.. Square
+ActionListener <.. GameView
 
 Square --o Piece
 

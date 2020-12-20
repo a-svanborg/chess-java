@@ -46,7 +46,7 @@ public class Board {
     }
 
     // returns piece at given place from the board
-    public Piece GetStatus(int i, int j) {
+    public Piece GetPieceAt(int i, int j) {
         return board[i][j];
     }
 
@@ -55,30 +55,14 @@ public class Board {
         return CurrentMessage;
     }
 
-    // Calls real Move2 that does the actual move and passes the color of the player
-    // whos turn it is.
-    public boolean Move(int i, int j, Piece piece) {
-        try {
-            if (whitesTurn) {
-                Move2(i, j, piece, Color.WHITE);
-            } else {
-                Move2(i, j, piece, Color.BLACK);
-            }
-            return true;
-
-        } catch (Exception e) {
-            CurrentMessage = "Välj en position som finns på brädet";
-            return false;
-        }
-    }
-
     // Calls validMove to check the move. Also updates the board when a move is
     // succesful.
-    public boolean Move2(int i, int j, Piece piece, Color c) {
+    public boolean Move(int i, int j, Piece piece) {
+        Color c = whitesTurn ? Color.WHITE : Color.BLACK;
         // Moving requires two clicks
         // Choose piece to move. Has to be correct piece
         if (moveCounter == 0) {
-            choosenPiece = GetStatus(i, j);
+            choosenPiece = GetPieceAt(i, j);
             Color pieceColor = choosenPiece.getColor();
             // Loop every square to find potentiall moves
             if (pieceColor == c) {
