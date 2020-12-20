@@ -6,13 +6,13 @@ import java.awt.event.*;
 import java.awt.Color;
 
 public class GameView extends JFrame implements ActionListener {
-    private Board Chessboard;
+    private Chess Chessboard;
     private JLabel label = new JLabel();
     private JPanel mainPanel = new JPanel();
     private JPanel Panel = new JPanel();
     private int Size = 8;
 
-    GameView(Board chessboard) {
+    GameView(Chess chessboard) {
         Chessboard = chessboard;
         setSize(550, 650);
         setLocation(100, 150);
@@ -81,7 +81,7 @@ public class GameView extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        Board chessboard = new Board();
+        Chess chessboard = new Chess();
         new GameView(chessboard);
     }
 }

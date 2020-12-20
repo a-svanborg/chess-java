@@ -1,13 +1,13 @@
 import java.awt.Color;
 
-public class Board {
+public class Chess {
     private Piece[][] board = new Piece[8][8];
     private String CurrentMessage = "Welcome! White starts";
     private boolean whitesTurn = true;
     private int moveCounter = 0;
     private Piece choosenPiece;
 
-    public Board() {
+    public Chess() {
         Color black = Color.BLACK;
         Color white = Color.WHITE;
         // Put out all the pieces

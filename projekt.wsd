@@ -8,7 +8,7 @@ class JPanel
 
 class JLabel
 
-class Board{
+class Chess{
     --Methods--
     + Move()
     + GetPieceAt()
@@ -50,7 +50,7 @@ interface ActionListener
 
 
 JFrame <-- GameView
-GameView --o Board
+GameView --o Chess
 
 
 JPanel "2" *-- GameView
@@ -58,7 +58,7 @@ Square "64" *-- JPanel
 JLabel "1" *-- JPanel
 
 
-Piece "64" *-- Board
+Piece "64" *-- Chess
 
 JButton <-- Square
 ActionListener <.. GameView
