@@ -8,12 +8,12 @@ public class Knight extends Piece {
 
     // Returns true if the move is ok
     public boolean validMove(Piece[][] board, Piece startP, Piece endP) {
-        if (endP.color == startP.color) { 
+        if (endP.getColor() == startP.getColor()) { 
             return false; 
         }
 
-        int x = Math.abs(startP.xPosition - endP.xPosition); 
-        int y = Math.abs(startP.yPosition - endP.yPosition); 
+        int x = Math.abs(startP.getX() - endP.getX()); 
+        int y = Math.abs(startP.getY() - endP.getY()); 
         if (x * y == 2) {
             return true;
        }

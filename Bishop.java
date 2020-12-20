@@ -8,12 +8,12 @@ public class Bishop extends Piece {
 
     // Currently moves like king which is ok for grade E
     public boolean validMove(Piece[][] board, Piece startP, Piece endP) {
-        if (endP.color == startP.color) { 
+        if (endP.getColor() == startP.getColor()) { 
             return false; 
         }
 
-        int x = Math.abs(startP.xPosition - endP.xPosition); 
-        int y = Math.abs(startP.yPosition - endP.yPosition);
+        int x = Math.abs(startP.getX() - endP.getX()); 
+        int y = Math.abs(startP.getY() - endP.getY());
 
         // Check if diagonal
         if (x != y) { 
@@ -21,34 +21,34 @@ public class Bishop extends Piece {
         }
 
         // Up right
-        if (startP.xPosition > endP.xPosition && startP.yPosition < endP.yPosition) {
+        if (startP.getX() > endP.getX() && startP.getY() < endP.getY()) {
             for (int i = 1; i < x; i++) {
-                Piece currentSquare = board[startP.xPosition - i][startP.yPosition + i];
-                    if (currentSquare.color != Color.BLUE) {
+                Piece currentSquare = board[startP.getX() - i][startP.getY() + i];
+                    if (currentSquare.getColor() != Color.BLUE) {
                         return false;
                     }
             }
         // down left
-        } else if (startP.xPosition < endP.xPosition && startP.yPosition > endP.yPosition) {
+        } else if (startP.getX() < endP.getX() && startP.getY() > endP.getY()) {
             for (int i = 1; i < x; i++) {
-                Piece currentSquare = board[startP.xPosition + i][startP.yPosition - i];
-                    if (currentSquare.color != Color.BLUE) {
+                Piece currentSquare = board[startP.getX() + i][startP.getY() - i];
+                    if (currentSquare.getColor() != Color.BLUE) {
                         return false;
                     }
             }
         // up left
-        } else if (startP.xPosition > endP.xPosition && startP.yPosition > endP.yPosition) {
+        } else if (startP.getX() > endP.getX() && startP.getY() > endP.getY()) {
             for (int i = 1; i < x; i++) {
-                Piece currentSquare = board[startP.xPosition - i][startP.yPosition - i];
-                    if (currentSquare.color != Color.BLUE) {
+                Piece currentSquare = board[startP.getX() - i][startP.getY() - i];
+                    if (currentSquare.getColor() != Color.BLUE) {
                         return false;
                     }
             }
         // down right
         } else {
             for (int i = 1; i < x; i++) {
-                Piece currentSquare = board[startP.xPosition + i][startP.yPosition + i];
-                    if (currentSquare.color != Color.BLUE) {
+                Piece currentSquare = board[startP.getX() + i][startP.getY() + i];
+                    if (currentSquare.getColor() != Color.BLUE) {
                         return false;
                     }
             }

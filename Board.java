@@ -55,11 +55,10 @@ public class Board {
         return CurrentMessage;
     }
 
-    // Calls real Move2 that does the actual move and sends with the color of player
+    // Calls real Move2 that does the actual move and passes the color of the player
     // whos turn it is.
     public boolean Move(int i, int j, Piece piece) {
         try {
-            // Moving requires two clicks
             if (whitesTurn) {
                 Move2(i, j, piece, Color.WHITE);
             } else {
@@ -68,7 +67,6 @@ public class Board {
             return true;
 
         } catch (Exception e) {
-            // System.out.println(e);
             CurrentMessage = "Välj en position som finns på brädet";
             return false;
         }
@@ -77,10 +75,9 @@ public class Board {
     // Calls validMove to check the move. Also updates the board when a move is
     // succesful.
     public boolean Move2(int i, int j, Piece piece, Color c) {
+        // Moving requires two clicks
         // Choose piece to move. Has to be correct piece
-
         if (moveCounter == 0) {
-
             choosenPiece = GetStatus(i, j);
             Color pieceColor = choosenPiece.getColor();
             // Loop every square to find potentiall moves
@@ -102,40 +99,45 @@ public class Board {
                 CurrentMessage = String.format("It is %s turn now", whitesTurn == true ? "whites" : "blacks");
             }
 
-            // Move choosen piece to location. Must check if move is valid.
+        // Move choosen piece to location. Must check if move is valid.
         } else if (moveCounter == 1) {
-            // remove inStrike and isChecking
-            for (int row = 0; row < 8; row++) {
-                for (int col = 0; col < 8; col++) {
-                    board[row][col].inStrike = false;
-                    board[row][col].isChecking = false;
-                }
-            }
-
             Piece newSquare = piece;
 
             // This if-statement allows us to place back the piece at the same square
             // without switching player.
-            if (newSquare.xPosition == choosenPiece.xPosition && newSquare.yPosition == choosenPiece.yPosition) {
+            if (newSquare.getX() == choosenPiece.getX() && newSquare.getY() == choosenPiece.getY()) {
+                for (int row = 0; row < 8; row++) {
+                    for (int col = 0; col < 8; col++) {
+                        board[row][col].inStrike = false;
+                        board[row][col].isChecking = false;
+                    }
+                }
                 board[i][j] = choosenPiece;
-                choosenPiece.xPosition = i;
-                choosenPiece.yPosition = j;
+                choosenPiece.setX(i);
+                choosenPiece.setY(j);
                 CurrentMessage = String.format("Still %s turn", whitesTurn == true ? "whites" : "blacks");
                 moveCounter = 0;
             }
 
             else if (choosenPiece.validMove(board, choosenPiece, newSquare)) {
+                // remove inStrike and isChecking
+                for (int row = 0; row < 8; row++) {
+                    for (int col = 0; col < 8; col++) {
+                        board[row][col].inStrike = false;
+                        board[row][col].isChecking = false;
+                    }
+                }
                 choosenPiece.hasMoved = true;
                 board[i][j] = choosenPiece;
-                choosenPiece.xPosition = i;
-                choosenPiece.yPosition = j;
+                choosenPiece.setX(i);
+                choosenPiece.setY(j);
                 CurrentMessage = String.format("Nice move. %s turn.", whitesTurn == true ? "Blacks" : "Whites");
                 moveCounter = 0;
                 whitesTurn = !whitesTurn;
 
                 // Promotion
-                if (choosenPiece instanceof Pawn && ((choosenPiece.color == Color.WHITE && i == 0) || (choosenPiece.color == Color.BLACK && i == 7))) {
-                         board[i][j] = new Queen(i,j,choosenPiece.color, choosenPiece.color == Color.WHITE ? "pictures/white_queen.png" : "pictures/black_queen.png");
+                if (choosenPiece instanceof Pawn && ((choosenPiece.getColor() == Color.WHITE && i == 0) || (choosenPiece.getColor() == Color.BLACK && i == 7))) {
+                         board[i][j] = new Queen(i,j,choosenPiece.getColor(), choosenPiece.getColor() == Color.WHITE ? "pictures/white_queen.png" : "pictures/black_queen.png");
                      } 
 
                 // Loop every square to find potentiall checks

@@ -8,10 +8,15 @@ Pieces:
 
 
 Todo:
--rensa piece.xPosition använd istället getxPosition. Samma för yposition, color.
+- rensa piece.xPosition använd istället getxPosition. Samma för yposition, color.
 - när används directory
 - se över access level properties
 
 
-Buggar:
+Tankar:
+Tagit bort hasMoved på pawn?
+Byta namn på Game klassen till något med view?
+Ska vi identifiera när någon vunnit?
+Varför har vi return true/false i "Move()"?
+
 

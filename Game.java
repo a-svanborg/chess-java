@@ -1,8 +1,5 @@
-import java.util.Scanner;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -58,8 +55,9 @@ public class Game extends JFrame implements ActionListener {
                     sq.setIcon(new ImageIcon(img));
                 } catch (Exception e) {}
 
-                sq.xPosition = row;
-                sq.yPosition = col;
+                sq.setX(row);
+                sq.setY(col);
+
                 Panel.add(sq).setLocation(row * 100, col * 100);
                 sq.addActionListener(this);
                 counter++;
@@ -69,7 +67,6 @@ public class Game extends JFrame implements ActionListener {
 
         Panel.setLayout(new GridLayout(Size + 1, Size));
         label = new JLabel(Chessboard.GetMessage());
-
 
         mainPanel.add(Panel);
         mainPanel.add(label);
@@ -81,7 +78,8 @@ public class Game extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Square square = (Square) e.getSource();
-        Chessboard.Move(square.xPosition, square.yPosition, square.piece);
+        //Chessboard.Move(square.xPosition, square.yPosition, square.Piece);
+        Chessboard.Move(square.getXpos(), square.getYpos(), square.getPiece());
         restart();
     }
 
@@ -89,5 +87,4 @@ public class Game extends JFrame implements ActionListener {
         Board chessboard = new Board();
         new Game(chessboard);
     }
-    
 }

@@ -1,12 +1,12 @@
 import java.awt.Color;
 public abstract class Piece {
-    public Color color;
-    public boolean inStrike = false;
-    public boolean hasMoved = false;
-    public boolean isChecking = false;
-    int xPosition;
-    int yPosition;
-    String directory;
+    private Color color;
+    boolean inStrike = false;
+    boolean isChecking = false;
+    boolean hasMoved = false;
+    private int xPosition;
+    private int yPosition;
+    private String directory;
 
     Piece(int x, int y, Color c, String dir) {
         xPosition = x;
@@ -19,12 +19,20 @@ public abstract class Piece {
         return color;
     }
 
-    public int getxPosition() {
+    public int getX() {
         return xPosition;
     }
 
-    public int getyPosition() {
+    public int getY() {
         return yPosition;
+    }
+
+    public void setX(int x) {
+        xPosition = x;
+    }
+
+    public void setY(int y) {
+        yPosition = y;
     }
 
     public String getDir() {
@@ -34,6 +42,4 @@ public abstract class Piece {
     public boolean validMove(Piece[][] board, Piece startP, Piece endP) {
         return true;
     }
-
-
 }
