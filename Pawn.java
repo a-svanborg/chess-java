@@ -13,11 +13,11 @@ public class Pawn extends Piece {
         if (endP.getColor() == startP.getColor()) { 
             return false; 
         }
+        
         if (hasMoved == false) {
             if (startP.getColor() == Color.WHITE) {
                 // First move = 1 or 2 steps "forward"
                 if (startP.getY() == endP.getY() && ((endP.getX() - startP.getX() == -2) || (endP.getX() - startP.getX() == -1)) && endP.getColor() == Color.BLUE && board[startP.getX() - 1][startP.getY()].getColor() == Color.BLUE) {
-                    //hasMoved = true;
                     return true;
                 
                 // Capturing
@@ -27,7 +27,6 @@ public class Pawn extends Piece {
             } else {
                 // First move = 1 or 2 steps "forward"
                 if (startP.getY() == endP.getY() && ((startP.getX() - endP.getX() == -2) || (startP.getX() - endP.getX() == -1) && endP.getColor() == Color.BLUE) && board[startP.getX() + 1][startP.getY()].getColor() == Color.BLUE) {
-                    //hasMoved = true;
                     return true;
                 
                 // Capturing

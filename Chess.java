@@ -20,8 +20,8 @@ public class Chess {
         board[7][5] = new Bishop(7, 5, white, "pictures/white_bishop.png");
         board[7][6] = new Knight(7, 6, white, "pictures/white_knight.png");
         board[7][7] = new Rook(7, 7, white, "pictures/white_rook.png");
-        for (int i = 0; i < board.length; i++) {
-            board[6][i] = new Pawn(6, i, white, "pictures/white_pawn.png");
+        for (int x = 0; x < board.length; x++) {
+            board[6][x] = new Pawn(6, x, white, "pictures/white_pawn.png");
         }
 
         // Black
@@ -33,21 +33,21 @@ public class Chess {
         board[0][5] = new Bishop(0, 5, black, "pictures/black_bishop.png");
         board[0][6] = new Knight(0, 6, black, "pictures/black_knight.png");
         board[0][7] = new Rook(0, 7, black, "pictures/black_rook.png");
-        for (int i = 0; i < board.length; i++) {
-            board[1][i] = new Pawn(1, i, black, "pictures/black_pawn.png");
+        for (int x = 0; x < board.length; x++) {
+            board[1][x] = new Pawn(1, x, black, "pictures/black_pawn.png");
         }
 
         // Empty squares in the middle
-        for (int i = 2; i < 6; i++) {
-            for (int j = 0; j < 8; j++) {
-                board[i][j] = new Mock(i, j, Color.BLUE, "");
+        for (int x = 2; x < 6; x++) {
+            for (int y = 0; y < 8; y++) {
+                board[x][y] = new Mock(x, y, Color.BLUE, "");
             }
         }
     }
 
     // returns piece at given place from the board
-    public Piece GetPieceAt(int i, int j) {
-        return board[i][j];
+    public Piece GetPieceAt(int x, int y) {
+        return board[x][y];
     }
 
     // Gives us messages to be put in the label
@@ -57,12 +57,12 @@ public class Chess {
 
     // Calls validMove to check the move. Also updates the board when a move is
     // succesful.
-    public boolean Move(int i, int j, Piece piece) {
+    public boolean Move(int x, int y, Piece piece) {
         Color c = whitesTurn ? Color.WHITE : Color.BLACK;
         // Moving requires two clicks
         // Choose piece to move. Has to be correct piece
         if (moveCounter == 0) {
-            choosenPiece = GetPieceAt(i, j);
+            choosenPiece = GetPieceAt(x, y);
             Color pieceColor = choosenPiece.getColor();
             // Loop every square to find potentiall moves
             if (pieceColor == c) {
@@ -75,7 +75,7 @@ public class Chess {
                     }
                 }
 
-                board[i][j] = new Mock(i, j, Color.BLUE, "");
+                board[x][y] = new Mock(x, y, Color.BLUE, "");
                 moveCounter += 1;
                 CurrentMessage = String.format("Place your piece");
 
@@ -85,25 +85,25 @@ public class Chess {
 
         // Move choosen piece to location. Must check if move is valid.
         } else if (moveCounter == 1) {
-            Piece newSquare = piece;
+            Piece newPiece = piece;
 
             // This if-statement allows us to place back the piece at the same square
             // without switching player.
-            if (newSquare.getX() == choosenPiece.getX() && newSquare.getY() == choosenPiece.getY()) {
+            if (newPiece.getX() == choosenPiece.getX() && newPiece.getY() == choosenPiece.getY()) {
                 for (int row = 0; row < 8; row++) {
                     for (int col = 0; col < 8; col++) {
                         board[row][col].inStrike = false;
                         board[row][col].isChecking = false;
                     }
                 }
-                board[i][j] = choosenPiece;
-                choosenPiece.setX(i);
-                choosenPiece.setY(j);
+                board[x][y] = choosenPiece;
+                choosenPiece.setX(x);
+                choosenPiece.setY(y);
                 CurrentMessage = String.format("Still %s turn", whitesTurn == true ? "whites" : "blacks");
                 moveCounter = 0;
             }
 
-            else if (choosenPiece.validMove(board, choosenPiece, newSquare)) {
+            else if (choosenPiece.validMove(board, choosenPiece, newPiece)) {
                 // remove inStrike and isChecking
                 for (int row = 0; row < 8; row++) {
                     for (int col = 0; col < 8; col++) {
@@ -112,16 +112,16 @@ public class Chess {
                     }
                 }
                 choosenPiece.hasMoved = true;
-                board[i][j] = choosenPiece;
-                choosenPiece.setX(i);
-                choosenPiece.setY(j);
+                board[x][y] = choosenPiece;
+                choosenPiece.setX(x);
+                choosenPiece.setY(y);
                 CurrentMessage = String.format("Nice move. %s turn.", whitesTurn == true ? "Blacks" : "Whites");
                 moveCounter = 0;
                 whitesTurn = !whitesTurn;
 
                 // Promotion
-                if (choosenPiece instanceof Pawn && ((choosenPiece.getColor() == Color.WHITE && i == 0) || (choosenPiece.getColor() == Color.BLACK && i == 7))) {
-                         board[i][j] = new Queen(i,j,choosenPiece.getColor(), choosenPiece.getColor() == Color.WHITE ? "pictures/white_queen.png" : "pictures/black_queen.png");
+                if (choosenPiece instanceof Pawn && ((choosenPiece.getColor() == Color.WHITE && x == 0) || (choosenPiece.getColor() == Color.BLACK && x == 7))) {
+                         board[x][y] = new Queen(x,y,choosenPiece.getColor(), choosenPiece.getColor() == Color.WHITE ? "pictures/white_queen.png" : "pictures/black_queen.png");
                      } 
 
                 // Loop every square to find potentiall checks

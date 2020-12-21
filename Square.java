@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.Color;
 
-public class Square extends JButton{
+public class Square extends JButton {
     // Has a position, color and  a piece. If the square is "empty", it holds a mock-piece which is blue.
     private int xPosition;
     private int yPosition;
@@ -14,10 +14,10 @@ public class Square extends JButton{
         setBorder(BorderFactory.createLineBorder(Color.decode("#00A4CCFF"),2,false));
         setBorderPainted(true);
         setContentAreaFilled(true);
-        
         setBackground(color);
         setForeground(Color.BLACK);
         setOpaque(true);
+        
         xPosition = x;
         yPosition = y;
         Piece = piece;

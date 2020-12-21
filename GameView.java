@@ -18,12 +18,12 @@ public class GameView extends JFrame implements ActionListener {
         setLocation(100, 150);
         setTitle("Chess");
         getContentPane().setBackground(Color.CYAN);
-        restart();
+        refresh();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         revalidate();
     }
 
-    public void restart() {
+    public void refresh() {
         mainPanel.removeAll();
         mainPanel = new JPanel();
         Panel.removeAll();
@@ -77,7 +77,7 @@ public class GameView extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Square square = (Square) e.getSource();
         Chessboard.Move(square.getXpos(), square.getYpos(), square.getPiece());
-        restart();
+        refresh();
     }
 
     public static void main(String[] args) {

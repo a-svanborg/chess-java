@@ -6,7 +6,7 @@ public class Rook extends Piece {
         super(x, y, c, dir);
     }
 
-    // Currently moves like king which is ok for grade E
+    
     public boolean validMove(Piece[][] board, Piece startP, Piece endP) {
         if (endP.getColor() == startP.getColor()) { 
             return false; 

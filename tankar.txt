@@ -8,16 +8,9 @@ Pieces:
 
 
 Todo:
-- rensa piece.xPosition använd istället getxPosition. Samma för yposition, color.
-- när används directory
-- se över access level properties
-
+Presentera
 
 Tankar:
-Tagit bort hasMoved på pawn?
-Byta namn på Game klassen till något med view?
-Ska vi identifiera när någon vunnit?
-Varför har vi return true/false i "Move()"?
 
 
 Redovisningsplan:
@@ -32,9 +25,9 @@ Redovisningsplan:
 3. Chess Anton
     Lista av listor av pjäser
     Mock objektet
-    Move()
     GetPiece()
     GetMessage()
+    Move()
 4. Square Anton
     Knapp som avlyssnas av GameView
 5. Pieces Anton

@@ -8,6 +8,7 @@ public class King extends Piece {
 
     // Returns true if the move is ok
     public boolean validMove(Piece[][] board, Piece startP, Piece endP) {
+        
         if (endP.getColor() == startP.getColor()) { 
             return false; 
         }
